@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuickBill — Supermarket POS</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Primary">
+      <div class="sidebar__brand">
+        <div class="sidebar__brand-mark" aria-hidden="true">QB</div>
+        <div>
+          <div class="sidebar__brand-text">QuickBill</div>
+          <span class="sidebar__brand-sub">Supermarket POS</span>
+        </div>
+      </div>
+
+      <div class="sidebar__section-label">Workspace</div>
+      <nav class="sidebar__nav" id="primaryNav">
+        <button class="nav-item" data-view="dashboard">
+          <span class="nav-item__icon" aria-hidden="true">▦</span>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-view="billing">
+          <span class="nav-item__icon" aria-hidden="true">▤</span>
+          <span>Billing</span>
+        </button>
+        <button class="nav-item" data-view="products">
+          <span class="nav-item__icon" aria-hidden="true">▣</span>
+          <span>Products</span>
+        </button>
+        <button class="nav-item" data-view="inventory">
+          <span class="nav-item__icon" aria-hidden="true">▢</span>
+          <span>Inventory</span>
+          <span class="nav-item__badge" id="lowStockBadge" hidden>0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__section-label">Insights</div>
+      <nav class="sidebar__nav" id="secondaryNav">
+        <button class="nav-item" data-view="sales-history">
+          <span class="nav-item__icon" aria-hidden="true">▥</span>
+          <span>Sales History</span>
+        </button>
+        <button class="nav-item" data-view="reports">
+          <span class="nav-item__icon" aria-hidden="true">▦</span>
+          <span>Reports</span>
+        </button>
+        <button class="nav-item" data-view="settings">
+          <span class="nav-item__icon" aria-hidden="true">⚙</span>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <span class="sidebar__footer-dot" aria-hidden="true"></span>
+        <span id="sidebarVersion">QuickBill POS</span>
+      </div>
+    </aside>
+
+    <!-- Main viewport -->
+    <main class="viewport">
+      <header class="topbar">
+        <div>
+          <div class="topbar__title" id="topbarTitle">Dashboard</div>
+          <div class="topbar__crumb" id="topbarCrumb">Overview of today’s activity</div>
+        </div>
+        <div class="topbar__spacer"></div>
+        <input id="topbarSearch" class="input topbar__search" type="search" placeholder="Search products, invoices…  (⌘K)"
+               aria-label="Quick search" role="combobox" aria-expanded="false" aria-autocomplete="list"
+               autocomplete="off" spellcheck="false" />
+        <div class="topbar__user" title="Signed in as cashier">
+          <div class="topbar__user-avatar" aria-hidden="true">SK</div>
+          <span class="topbar__user-name" id="topbarUserName">Salman K.</span>
+        </div>
+      </header>
+
+      <section class="content" id="content" role="region" aria-live="polite">
+        <!-- View content is injected here by app.js -->
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>

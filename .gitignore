@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Electron runtime data — real shop database, never commit
+userData/
+.debug-phase5/
+.smoke-phase5/
+
+# macOS
+.DS_Store
+
+# Throwaway debug scaffolds (kept locally, not published)
+tools/.probe*.js
+tools/.debug-modal.js
+
+# Local env / editor
+.env
+.env.local
+*.log
+.idea/
+.vscode/

@@ -1,0 +1,28 @@
+{
+  "name": "quickbill",
+  "version": "0.4.0",
+  "description": "QuickBill — Professional supermarket billing desktop app. Phase 4: persistent sales ledger, transactional checkout, stock decrement.",
+  "private": true,
+  "main": "main.js",
+  "author": "QuickBill",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "rebuild-node": "npm rebuild better-sqlite3 --build-from-source",
+    "test": "node tools/run-tests.js",
+    "test:phase4": "node tools/run-tests.js phase4",
+    "test:phase5": "node tools/run-tests.js phase5",
+    "test:demo": "node tools/run-tests.js demo",
+    "postinstall": "electron-rebuild -f -w better-sqlite3"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.2.1",
+    "electron": "^31.7.7",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0"
+  }
+}

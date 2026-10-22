@@ -1,0 +1,75 @@
+/* QuickBill — base styles.
+   Tokens, reset, typography. No component layout here. */
+
+:root {
+  --bg:            #f6f8fb;
+  --surface:       #ffffff;
+  --surface-2:     #f1f4f9;
+  --surface-3:     #e9eef5;
+  --border:        #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text:          #0f172a;
+  --text-2:        #334155;
+  --muted:         #64748b;
+  --accent:        #2563eb;
+  --accent-2:      #1d4ed8;
+  --accent-soft:   #e0eaff;
+  --success:       #16a34a;
+  --success-soft:  #dcfce7;
+  --warning:       #d97706;
+  --warning-soft:  #fef3c7;
+  --error:         #dc2626;
+  --error-soft:    #fee2e2;
+
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow:    0 4px 14px rgba(15, 23, 42, 0.06);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button { cursor: pointer; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-2); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+::-webkit-scrollbar-track { background: transparent; }

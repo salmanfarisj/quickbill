@@ -1,0 +1,979 @@
+/* QuickBill — reusable components. Cards, buttons, tables, placeholders, stats. */
+
+/* ---- Inputs ---- */
+.input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.input::placeholder { color: var(--muted); }
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 13.5px;
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+}
+.btn:hover { background: var(--surface-2); }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-2);
+}
+.btn--ghost:hover { background: var(--surface-2); }
+
+.btn--danger {
+  background: var(--error);
+  border-color: var(--error);
+  color: white;
+}
+
+/* ---- Card ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.card__title { font-size: 14px; font-weight: 600; }
+.card__subtitle { font-size: 12px; color: var(--muted); }
+.card__body { padding: 18px; }
+
+/* ---- Stat card ---- */
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+}
+.stat__label { font-size: 12px; color: var(--muted); font-weight: 500; }
+.stat__value {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.stat__delta {
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.stat__delta--up    { color: var(--success); }
+.stat__delta--down  { color: var(--error); }
+.stat__delta--flat  { color: var(--muted); }
+.stat__icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent-2);
+  margin-bottom: 4px;
+}
+
+/* ---- Table ---- */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+}
+.table th,
+.table td {
+  padding: 11px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.table th {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--surface-2);
+}
+.table tbody tr:hover { background: var(--surface-2); }
+.table tbody tr:last-child td { border-bottom: none; }
+.table .num { font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ---- Status pill ---- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--surface-3);
+  color: var(--text-2);
+}
+.pill--paid     { background: var(--success-soft); color: var(--success); }
+.pill--refunded { background: var(--error-soft);   color: var(--error); }
+.pill--pending  { background: var(--warning-soft); color: var(--warning); }
+/* Unpaid/credit sales. Rendered by the Dashboard, Sales History and Reports
+   payment-breakdown table; without this rule they fell back to neutral grey
+   and a shop could not tell money owed at a glance. */
+.pill--unpaid   { background: var(--error-soft);   color: var(--error); }
+.pill--low      { background: var(--error-soft);   color: var(--error); }
+.pill--ok       { background: var(--success-soft); color: var(--success); }
+
+/* ---- Grid helpers ---- */
+.grid { display: grid; gap: 16px; }
+.grid--stats { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.grid--two   { grid-template-columns: 1.4fr 1fr; }
+@media (max-width: 980px) { .grid--two { grid-template-columns: 1fr; } }
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.page-header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.page-header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+
+/* ---- Placeholder (used by non-implemented views) ---- */
+.placeholder {
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  color: var(--text-2);
+}
+.placeholder__icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-2);
+  display: grid; place-items: center;
+  margin-bottom: 6px;
+}
+.placeholder h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+.placeholder p { margin: 0; max-width: 460px; color: var(--muted); font-size: 13px; }
+
+/* ---- Bars (used in dashboard chart list + trend) ---- */
+.bar-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.bar-row__label { flex: 0 0 160px; font-size: 13px; color: var(--text-2); }
+.bar-row__track {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.bar-row__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #60a5fa);
+  border-radius: 999px;
+}
+.bar-row__value { flex: 0 0 44px; text-align: right; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+
+/* ---- Spark trend chart ---- */
+/* The chart is emitted at the card's measured pixel width, so it must NOT be
+   stretched by CSS — a `width:100%` here would rescale the SVG and smear the
+   line, the dots and the axis labels horizontally. `max-width` only acts as a
+   guard for the first paint, before the view has been measured. */
+.spark {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.demo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ===================================================================== */
+/* Phase 2 — Products & Inventory                                                    */
+/* ===================================================================== */
+
+.page-header__actions { display: flex; gap: 8px; }
+
+/* Toolbar at the top of a card (search + filter + count). */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.toolbar__search { flex: 1 1 320px; max-width: 480px; }
+.toolbar__filter { flex: 0 0 200px; }
+.toolbar__spacer  { flex: 1; }
+.toolbar__count   { color: var(--muted); font-size: 12px; font-weight: 500; }
+/* Separator between the "from" and "to" date pickers. */
+.toolbar__sep     { color: var(--muted); font-size: 13px; user-select: none; }
+
+/* Caption under a truncated table (see Sales History's 50-row cap). */
+.table__footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.table .actions { white-space: nowrap; text-align: right; }
+.table .actions .btn { padding: 5px 10px; font-size: 12.5px; }
+
+/* Low-stock highlighting: warm left border + soft fill. */
+.table tbody tr.row--low td { background: rgba(220, 38, 38, 0.04); }
+.table tbody tr.row--low td:first-child {
+  box-shadow: inset 3px 0 0 0 var(--error);
+}
+.table tbody tr.row--low:hover td { background: rgba(220, 38, 38, 0.08); }
+
+.pill--category {
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-weight: 500;
+}
+code { font-family: var(--font-mono); }
+.mono-code,
+.muted-code {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.muted-code { color: var(--muted); background: var(--surface-3); padding: 1px 6px; border-radius: 4px; }
+.deficit    { color: var(--error); font-weight: 700; }
+
+/* ---- Tabs (used inside card headers on the inventory view) ---- */
+.tabs {
+  display: inline-flex;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+.tab {
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.tab:hover { color: var(--text); }
+.tab.is-active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+.tab__count {
+  background: var(--error);
+  color: white;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+  min-width: 18px;
+  text-align: center;
+}
+.tab:not(.is-active) .tab__count { background: var(--surface-3); color: var(--text-2); }
+
+/* ---- Product form ---- */
+.product-form { padding: 18px; }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+@media (max-width: 760px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field--wide { grid-column: 1 / -1; }
+.form-label  { font-size: 12px; color: var(--text-2); font-weight: 500; }
+.form-error  { color: var(--error); font-size: 11.5px; font-weight: 500; }
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---- Modal ---- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal[hidden] { display: none; }
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+}
+.modal__panel {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.18);
+  width: min(640px, 100%);
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.modal__header h2 { margin: 0; font-size: 16px; font-weight: 700; }
+.modal__body { padding: 18px 20px; overflow-y: auto; }
+.modal__body .muted { color: var(--muted); font-size: 13px; }
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1100;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  max-width: 360px;
+  animation: toast-in 160ms ease-out;
+}
+.toast--success { border-left-color: var(--success); }
+.toast--error   { border-left-color: var(--error); }
+.toast[hidden] { display: none; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================================== */
+/* Phase 3 — Billing / POS checkout                                                 */
+/* ===================================================================== */
+
+/* POS shell: capture column (left) + invoice column (right). */
+.pos-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 1080px) {
+  .pos-grid { grid-template-columns: 1fr; }
+}
+.pos-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+/* Shared bits */
+.pos-shortcuts {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.pos-shortcuts kbd {
+  font-family: var(--font-mono);
+  background: var(--surface-3);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+.pos-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 24px;
+  padding: 0 10px;
+  background: var(--surface-3);
+  color: var(--text-2);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.pos-pill--accent {
+  background: var(--accent);
+  color: white;
+}
+
+/* Banners — inline status messages under the scan input. */
+.pos-banner {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+.pos-banner[hidden] { display: none; }
+.pos-banner--error   { background: var(--error-soft);   color: var(--error);   border-color: rgba(220,38,38,0.2); }
+.pos-banner--success { background: var(--success-soft); color: var(--success); border-color: rgba(22,163,74,0.2); }
+
+/* Scan input area */
+.pos-scan__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pos-scan__icon {
+  position: absolute;
+  left: 12px;
+  color: var(--muted);
+  font-size: 16px;
+  pointer-events: none;
+}
+.pos-scan__input {
+  flex: 1;
+  padding-left: 36px;
+  padding-right: 36px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.pos-scan__input--error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error-soft);
+  animation: shake 320ms ease;
+}
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+.pos-scan__clear {
+  position: absolute;
+  right: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+.pos-scan__hint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.pos-scan__hint kbd {
+  font-family: var(--font-mono);
+  background: var(--surface-3);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* Search input */
+.pos-search { display: flex; flex-direction: column; gap: 10px; }
+.pos-search__input { font-size: 14px; }
+.pos-search__results { min-height: 120px; }
+.pos-results__more {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Compact table variant for POS rows (smaller padding than the products table). */
+.table--compact th,
+.table--compact td { padding: 9px 12px; font-size: 13px; }
+
+/* Search result row styling */
+.pos-result__name { font-weight: 600; }
+.pos-result__meta { margin-top: 2px; }
+.pos-result__low { color: var(--error); font-weight: 700; }
+.pos-results__table .btn { padding: 5px 10px; font-size: 12.5px; }
+
+/* Empty states */
+.pos-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px 18px;
+  color: var(--muted);
+  gap: 6px;
+}
+.pos-empty--soft { padding: 20px 14px; font-size: 13px; }
+.pos-empty--error { color: var(--error); font-size: 13px; }
+.pos-empty__icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-2);
+  display: grid; place-items: center;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.pos-empty__title { font-size: 14px; font-weight: 600; color: var(--text); }
+.pos-empty__hint { font-size: 12.5px; max-width: 280px; }
+
+/* Cart rows */
+.pos-cart__name { font-weight: 600; color: var(--text); }
+.pos-cart__meta { display: flex; gap: 6px; margin-top: 2px; align-items: center; }
+.pos-cart__meta code { font-size: 11.5px; }
+.pos-cart__remove {
+  padding: 4px 8px;
+  color: var(--muted);
+}
+.pos-cart__remove:hover { color: var(--error); }
+
+/* Quantity stepper (in-cart input + buttons) */
+.pos-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pos-qty__btn {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 6px;
+}
+.pos-qty__input {
+  width: 56px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  padding: 4px 6px;
+}
+.pos-qty__input--error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error-soft);
+}
+.pos-qty__err {
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: var(--error);
+  font-weight: 500;
+}
+
+/* Discount + tax adjust row */
+.pos-invoice__adjust { border-top: 1px solid var(--border); }
+.pos-adjust {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+.pos-adjust__field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.pos-adjust__label { font-size: 12px; color: var(--muted); font-weight: 500; }
+.pos-adjust__input { font-variant-numeric: tabular-nums; }
+.pos-adjust__input--error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error-soft);
+}
+.pos-adjust__err {
+  font-size: 11.5px;
+  color: var(--error);
+  font-weight: 500;
+}
+
+/* Totals breakdown */
+.pos-totals { display: flex; flex-direction: column; gap: 6px; padding-top: 6px; }
+.pos-totals__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+.pos-totals__row > span:first-child { color: var(--text-2); }
+.pos-totals__row > span:last-child  { color: var(--text); font-weight: 500; }
+.pos-totals__row--muted > span:last-child { color: var(--muted); font-weight: 500; }
+.pos-totals__row--final {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-strong);
+  font-size: 16px;
+  font-weight: 700;
+}
+.pos-totals__row--final > span:last-child {
+  color: var(--accent);
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* Checkout (preview) action */
+.pos-checkout {
+  border-top: 1px solid var(--border);
+  padding-top: 14px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pos-checkout__btn {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+.pos-checkout__hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ===================================================================== */
+/* Phase 5 — Receipts & reports (shared receipt styling + report cards).  */
+/* ===================================================================== */
+
+/* In-app receipt (used by Billing modal + Sales History modal). The
+   same renderer is also used to build the printable HTML loaded into a
+   hidden BrowserWindow for system printing; the printable document
+   carries its own self-contained styles in lib/receipt.js. */
+.receipt {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.receipt__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border-strong);
+}
+.receipt__store {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.receipt__store .receipt__store {
+  /* store name heading */
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+.receipt__store__line {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.receipt__bill-block {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.receipt__label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.receipt__bill {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+.receipt__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 14px;
+}
+.receipt__meta > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  border-bottom: 1px dotted var(--border);
+  padding: 4px 0;
+}
+.receipt__meta > div > span:first-child {
+  color: var(--muted);
+}
+.receipt__totals {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed var(--border-strong);
+  margin-top: 4px;
+  padding-top: 12px;
+}
+.receipt__totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+.receipt__totals > div > span:first-child { color: var(--muted); }
+.receipt__totals-final {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  border-top: 1px dashed var(--border-strong);
+  padding-top: 8px;
+  margin-top: 6px;
+}
+.receipt__totals-final > span:last-child {
+  color: var(--accent);
+}
+.receipt__payment {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+}
+.receipt__payment > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.receipt__payment > div > span:first-child {
+  color: var(--muted);
+}
+.receipt__footer {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted);
+  border-top: 1px dashed var(--border-strong);
+  padding-top: 10px;
+}
+.receipt__notes {
+  padding: 8px 12px;
+  background: var(--warning-soft);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+}
+.receipt__currency {
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* Bill-detail aliases — Sales History modal uses .bill-detail class on
+   the same content. Keep both names in sync so the styles apply. */
+.bill-detail__meta { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; margin-bottom: 12px; }
+.bill-detail__meta > div {
+  display: flex; justify-content: space-between; gap: 12px;
+  font-size: 12.5px; color: var(--text-2);
+  border-bottom: 1px dotted var(--border);
+  padding: 4px 0;
+}
+.bill-detail__meta > div > span:first-child { color: var(--muted); }
+.bill-detail__totals {
+  display: flex; flex-direction: column; gap: 4px;
+  border-top: 1px dashed var(--border-strong);
+  margin-top: 12px; padding-top: 10px;
+}
+.bill-detail__totals > div {
+  display: flex; justify-content: space-between; gap: 12px;
+  font-size: 13px; font-variant-numeric: tabular-nums;
+}
+.bill-detail__total-final {
+  font-size: 16px; font-weight: 700;
+  border-top: 1px dashed var(--border-strong);
+  padding-top: 8px; margin-top: 6px;
+}
+.bill-detail__total-final > span:last-child { color: var(--accent); }
+.bill-detail__payment {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 10px 12px; background: var(--surface-2);
+  border-radius: var(--radius-sm); margin-top: 10px;
+  font-size: 12.5px;
+}
+.bill-detail__payment > div {
+  display: flex; justify-content: space-between; gap: 12px;
+}
+.bill-detail__notes {
+  margin-top: 10px; padding: 8px 12px;
+  background: var(--warning-soft); border-radius: var(--radius-sm);
+  font-size: 12.5px;
+}
+
+/* Settings view — receipt preview card on the right column */
+.receipt-preview {
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px; gap: 8px;
+  max-width: 360px;
+}
+.receipt-preview__head {
+  display: flex; flex-direction: column; gap: 2px;
+  text-align: center;
+  border-bottom: 1px dashed var(--border-strong);
+  padding-bottom: 8px;
+}
+.receipt-preview__store { font-weight: 700; font-size: 15px; }
+.receipt-preview__line  { font-size: 12px; color: var(--muted); }
+.receipt-preview__divider { border-top: 1px dashed var(--border-strong); margin: 8px 0; }
+.receipt-preview__sample > div {
+  display: flex; justify-content: space-between;
+  font-size: 13px; font-variant-numeric: tabular-nums;
+  padding: 2px 0;
+}
+.receipt-preview__sample > div > span:first-child { color: var(--muted); }
+.receipt-preview__total {
+  border-top: 1px dashed var(--border-strong);
+  margin-top: 6px; padding-top: 6px;
+  font-weight: 700; font-size: 15px;
+}
+.receipt-preview__footer {
+  text-align: center; font-size: 12px; color: var(--muted);
+}
+
+/* Banner used for inline loading/error status on settings + dashboard. */
+.banner {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+.banner--loading { background: var(--accent-soft); color: var(--accent-2); border-color: rgba(37,99,235,0.2); }
+.banner--error   { background: var(--error-soft);   color: var(--error);   border-color: rgba(220,38,38,0.2); }
+.banner--success { background: var(--success-soft); color: var(--success); border-color: rgba(22,163,74,0.2); }
+.banner--info    { background: var(--surface-2);    color: var(--text-2);  border: 1px solid var(--border); }
+
+.form-error--top { margin-top: 10px; }
+.req { color: var(--error); margin-left: 2px; }
+.req::before { content: ''; }  /* keep small visible marker */
+
+.bar-row__track { background: var(--surface-3); border-radius: 999px; height: 8px; overflow: hidden; flex: 1; }
+.bar-row__fill  { background: var(--accent); height: 100%; border-radius: 999px; }
+
+/* Share-of-retail-value cell in the Reports category breakdown. Without an
+   explicit width the bar column collapses and the bar is unreadable. */
+.bar-cell { width: 22%; min-width: 140px; }
+.bar-cell .bar-row__track { display: block; }
+.stat__skeleton {
+  display: inline-block;
+  width: 80px; height: 18px;
+  background: linear-gradient(90deg, var(--surface-3) 0%, var(--surface-2) 50%, var(--surface-3) 100%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Re-anchor .receipt__store to allow the inner heading line. The JS
+   emits <div class="receipt__store">…</div> for each store line (incl.
+   storeName as the first child). Render the first line bold via a
+   child-selector. */
+.receipt__store > div:first-child {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
